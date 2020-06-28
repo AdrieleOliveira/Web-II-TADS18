@@ -1,0 +1,59 @@
+.cabecalho{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: #8A1C32;
+    padding: 12px;
+    color: white;
+    margin-top: 20px;
+}
+
+.ca-titulo{
+    display: flex;
+    flex-grow: 1;
+}
+
+#logo{
+    width: 30px;
+    margin-right: 5px;
+}
+
+.ca-titulo h5{
+    font-size: 15px;
+    color: #dbc6f1;
+}
+
+.titulo{
+    font-size: 22px;
+    flex-grow: 2;
+}
+
+.button {
+    margin-top: 30px;
+    color: white;
+}
+
+#button-cadastrar{
+    background-color: #D6405E;
+}
+
+#button-confirmar{
+    background-color: #0E8A23;
+}
+
+#button-voltar{
+    background-color: #000;
+}
+
+.icon{
+    width: 25px;
+}
+
+.titulo-label{
+    font-weight: 600;
+}
+
+.button:hover{
+    color: white;
+    font-weight: 600;
+}
