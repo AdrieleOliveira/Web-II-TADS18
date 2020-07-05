@@ -6,7 +6,7 @@
 
 @section('conteudo')
 
-    <form action="{{ route('cliente.update', $cliente->id ) }}" method="POST">
+    <form action="{{ route('cliente.update', $cliente) }}" method="POST">
         @csrf
         @method('PUT')
 
@@ -24,7 +24,7 @@
                 </div>
                 <div class='col-sm-6'>
                     <label>Telefone</label>
-                    <input type="phone" class="form-control" name="email" value="{{ $cliente->telefone }}">
+                    <input type="phone" class="form-control" name="telefone" value="{{ $cliente->telefone }}">
                 </div>
             </div>
             <div class='row' style="margin-top:20px">
