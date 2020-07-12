@@ -23,11 +23,18 @@ class VeterinarioController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'nome' => 'required',
-            'crmv' => 'required',
-            'especialidade_id' => 'required'
-        ]);
+        $regras = [
+            'nome' => 'required|max:100|min:10',
+            'crmv' => 'required|max:6|min:6',
+        ];
+
+        $msgs = [
+            'required' => 'O preenchimento do campo [:attribute] é obrigatório!',
+            'max' => 'O campo [:attribute] possui tamanho máximo de [:max] caracteres!',
+            'min' => 'O campo [:attribute] possui tamanho mínimo de [:min] caracteres!'
+        ];
+
+        $request->validate($regras, $msgs);
 
         $veterinario = new Veterinario([
             'nome' => $request->get('nome'),
@@ -56,11 +63,18 @@ class VeterinarioController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'nome' => 'required',
-            'crmv' => 'required',
-            'especialidade_id' => 'required'
-        ]);
+        $regras = [
+            'nome' => 'required|max:100|min:10',
+            'crmv' => 'required|max:6|min:6',
+        ];
+
+        $msgs = [
+            'required' => 'O preenchimento do campo [:attribute] é obrigatório!',
+            'max' => 'O campo [:attribute] possui tamanho máximo de [:max] caracteres!',
+            'min' => 'O campo [:attribute] possui tamanho mínimo de [:min] caracteres!'
+        ];
+
+        $request->validate($regras, $msgs);
 
         $veterinario = Veterinario::find($id);
         $veterinario->nome = $request->get('nome');

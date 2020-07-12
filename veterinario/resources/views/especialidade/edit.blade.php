@@ -14,13 +14,33 @@
             <div class='row'>
                 <div class='col-sm-12'>
                     <label>Nome</label>
-                    <input type="text" class="form-control" name="nome" value="{{$especialidade->nome}}">
+                    <input
+                        type="text"
+                        name="nome"
+                        value="{{$especialidade->nome}}"
+                        class="form-control {{ $errors->has('nome') ? 'is-invalid' : '' }}"
+                    >
+
+                    @if($errors->has('nome'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('nome') }}
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class="row">
                 <div class='col-sm-12'>
                     <label>Descrição</label>
-                    <textarea class="form-control" name="descricao">{{$especialidade->descricao}}</textarea>
+                    <textarea
+                        name="descricao"
+                        class="form-control {{ $errors->has('descricao') ? 'is-invalid' : '' }}"
+                    >{{$especialidade->descricao}}</textarea>
+
+                    @if($errors->has('descricao'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('descricao') }}
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class='row' style="margin-top:20px">

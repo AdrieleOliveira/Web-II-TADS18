@@ -10,13 +10,35 @@
             <div class='row'>
                 <div class='col-sm-12'>
                     <label>Nome</label>
-                    <input type="text" class="form-control" name="nome">
+                    <input
+                        type="text"
+                        name="nome"
+                        class="form-control {{ $errors->has('nome') ? 'is-invalid' : '' }}"
+                        value="{{ old('nome') }}"
+                    >
+
+                    @if($errors->has('nome'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('nome') }}
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class="row">
                 <div class='col-sm-6'>
                     <label>CRMV</label>
-                    <input type="text" class="form-control" name="crmv">
+                    <input
+                        type="text"
+                        name="crmv"
+                        class="form-control {{ $errors->has('crmv') ? 'is-invalid' : '' }}"
+                        value="{{ old('crmv') }}"
+                    >
+
+                    @if($errors->has('crmv'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('crmv') }}
+                        </div>
+                    @endif
                 </div>
 
                 <div class='col-sm-6'>

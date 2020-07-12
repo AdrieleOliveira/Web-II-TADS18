@@ -20,11 +20,20 @@ class ClienteController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'nome' => 'required',
-            'email' => 'required',
-            'telefone' => 'required',
-        ]);
+        $regras = [
+            'nome' => 'required|max:100|min:10',
+            'email' => 'required|unique:clientes',
+            'telefone' => 'required|max:13|min:11',
+        ];
+
+        $msgs = [
+            'required' => 'O preenchimento do campo [:attribute] é obrigatório!',
+            'max' => 'O campo [:attribute] possui tamanho máximo de [:max] caracteres!',
+            'min' => 'O campo [:attribute] possui tamanho mínimo de [:min] caracteres!',
+            'email.unique' => 'Já existe um cliente cadastrado para o e-mail especificado!'
+        ];
+
+        $request->validate($regras, $msgs);
 
         $cliente = new Cliente([
             'nome' => $request->get('nome'),
@@ -52,6 +61,25 @@ class ClienteController extends Controller
 
     public function update(Request $request, $id)
     {
+        $regras = [
+            'nome' => 'required|max:100|min:10',
+            'telefone' => 'required|max:13|min:11',
+        ];
+
+        $msgs = [
+            'required' => 'O preenchimento do campo [:attribute] é obrigatório!',
+            'max' => 'O campo [:attribute] possui tamanho máximo de [:max] caracteres!',
+            'min' => 'O campo [:attribute] possui tamanho mínimo de [:min] caracteres!',
+        ];
+
+        $request->validate($regras, $msgs);
+
+        $cliente = new Cliente([
+            'nome' => $request->get('nome'),
+            'email' => $request->get('email'),
+            'telefone' => $request->get('telefone')
+        ]);
+
         $cliente = Cliente::find($id);
         $cliente->nome = $request->get('nome');
         $cliente->email = $request->get('email');

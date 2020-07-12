@@ -10,17 +10,51 @@
             <div class='row'>
                 <div class='col-sm-12'>
                     <label>Nome</label>
-                    <input type="text" class="form-control" name="nome">
+                    <input
+                        type="text"
+                        name="nome"
+                        value="{{ old('nome') }}"
+                        class="form-control {{ $errors->has('nome') ? 'is-invalid' : '' }}"
+                    >
+
+                    @if($errors->has('nome'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('nome') }}
+                        </div>
+                    @endif
+
                 </div>
             </div>
             <div class="row">
                 <div class='col-sm-6'>
                     <label>E-mail</label>
-                    <input type="email" class="form-control" name="email">
+                    <input
+                        type="email"
+                        name="email"
+                        value="{{ old('email') }}"
+                        class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"
+                    >
+
+                    @if($errors->has('email'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('email') }}
+                        </div>
+                    @endif
                 </div>
                 <div class='col-sm-6'>
                     <label>Telefone</label>
-                    <input type="phone" class="form-control" name="telefone">
+                    <input
+                        type="phone"
+                        name="telefone"
+                        value="{{ old('telefone') }}"
+                        class="form-control {{ $errors->has('telefone') ? 'is-invalid' : '' }}"
+                    >
+
+                    @if($errors->has('telefone'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('telefone') }}
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class='row' style="margin-top:20px">
