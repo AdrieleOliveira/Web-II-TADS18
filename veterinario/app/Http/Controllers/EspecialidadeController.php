@@ -14,75 +14,62 @@ class EspecialidadeController extends Controller
         return view('especialidade.index', compact('especialidades'));
     }
 
-    public function create()
-    {
-        return view('especialidade.create');
-    }
+    public function create(){  }
 
     public function store(Request $request)
     {
-        $regras = [
-            'nome' => 'required|max:30|min:5',
-            'descricao' => 'required|max:250|min:5',
-        ];
-
-        $msgs = [
-            'required' => 'O preenchimento do campo [:attribute] é obrigatório!',
-            'max' => 'O campo [:attribute] possui tamanho máximo de [:max] caracteres!',
-            'min' => 'O campo [:attribute] possui tamanho mínimo de [:min] caracteres!'
-        ];
-
-        $request->validate($regras, $msgs);
-
         $especialidade = new Especialidade([
             'nome' => $request->get('nome'),
             'descricao' => $request->get('descricao')
         ]);
 
         $especialidade->save();
-        return redirect()->route('especialidade.index');
+        return json_encode($especialidade);
     }
 
     public function show($id)
     {
         $especialidade = Especialidade::find($id);
-        return view('especialidade.show', compact('especialidade'));
+
+        if(isset($especialidade)){
+            return json_encode($especialidade);
+        }
+
+        return response('Especialidade não encontrada', 404);
     }
 
-    public function edit($id)
-    {
-       $especialidade = Especialidade::find($id);
-       return view('especialidade.edit', compact('especialidade'));
-    }
+    public function edit($id) {}
 
     public function update(Request $request, $id)
     {
-        $regras = [
-            'nome' => 'required|max:30|min:5',
-            'descricao' => 'required|max:250|min:5',
-        ];
-
-        $msgs = [
-            'required' => 'O preenchimento do campo [:attribute] é obrigatório!',
-            'max' => 'O campo [:attribute] possui tamanho máximo de [:max] caracteres!',
-            'min' => 'O campo [:attribute] possui tamanho mínimo de [:min] caracteres!'
-        ];
-
-        $request->validate($regras, $msgs);
 
         $especialidade = Especialidade::find($id);
-        $especialidade->nome = $request->get('nome');
-        $especialidade->descricao = $request->get('descricao');
-        $especialidade->save();
 
-        return redirect()->route('especialidade.index');
+        if(isset($especialidade)){
+            $especialidade->nome = $request->get('nome');
+            $especialidade->descricao = $request->get('descricao');
+            $especialidade->save();
+
+            return json_encode($especialidade);
+        }
+
+        return response('Especialidade não encontrada', 404);
     }
 
     public function destroy($id)
     {
         $especialidade = Especialidade::find($id);
-        $especialidade->delete();
 
-        return redirect()->route('especialidade.index');
+        if(isset($especialidade)){
+            $especialidade->delete();
+            return response('OK', 200);
+        }
+
+        return response('Especialidade não encontrada', 404);
+    }
+
+    public function loadJson(){
+        $especialidades = Especialidade::all();
+        return json_encode($especialidades);
     }
 }

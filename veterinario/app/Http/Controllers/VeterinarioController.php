@@ -15,27 +15,10 @@ class VeterinarioController extends Controller
         return view('veterinario.index', compact('veterinarios'));
     }
 
-    public function create()
-    {
-        $especialidades = Especialidade::all();
-        return view('veterinario.create', compact('especialidades'));
-    }
+    public function create() {}
 
     public function store(Request $request)
     {
-        $regras = [
-            'nome' => 'required|max:100|min:10',
-            'crmv' => 'required|max:6|min:6',
-        ];
-
-        $msgs = [
-            'required' => 'O preenchimento do campo [:attribute] é obrigatório!',
-            'max' => 'O campo [:attribute] possui tamanho máximo de [:max] caracteres!',
-            'min' => 'O campo [:attribute] possui tamanho mínimo de [:min] caracteres!'
-        ];
-
-        $request->validate($regras, $msgs);
-
         $veterinario = new Veterinario([
             'nome' => $request->get('nome'),
             'crmv' => $request->get('crmv'),
@@ -43,53 +26,51 @@ class VeterinarioController extends Controller
         ]);
 
         $veterinario->save();
-        return redirect()->route('veterinario.index');
+        return json_encode($veterinario);
     }
 
     public function show($id)
     {
         $veterinario = Veterinario::find($id);
-        $veterinario->especialidade = Especialidade::find($veterinario->id);
-        return view('veterinario.show', compact('veterinario'));
+
+        if(isset($veterinario)){
+            return json_encode($veterinario);
+        }
+
+        return response('Veterinário não encontrado', 404);
     }
 
-    public function edit($id)
-    {
-        $veterinario = Veterinario::find($id);
-        $especialidades = Especialidade::all();
-
-        return view('veterinario.edit', compact('veterinario', 'especialidades'));
-    }
+    public function edit($id){}
 
     public function update(Request $request, $id)
     {
-        $regras = [
-            'nome' => 'required|max:100|min:10',
-            'crmv' => 'required|max:6|min:6',
-        ];
-
-        $msgs = [
-            'required' => 'O preenchimento do campo [:attribute] é obrigatório!',
-            'max' => 'O campo [:attribute] possui tamanho máximo de [:max] caracteres!',
-            'min' => 'O campo [:attribute] possui tamanho mínimo de [:min] caracteres!'
-        ];
-
-        $request->validate($regras, $msgs);
-
         $veterinario = Veterinario::find($id);
-        $veterinario->nome = $request->get('nome');
-        $veterinario->crmv = $request->get('crmv');
-        $veterinario->especialidade_id = $request->get('especialidade_id');
-        $veterinario->save();
 
-        return redirect()->route('veterinario.index');
+        if(isset($veterinario)){
+            $veterinario->nome = $request->get('nome');
+            $veterinario->crmv = $request->get('crmv');
+            $veterinario->especialidade_id = $request->get('especialidade_id');
+            $veterinario->save();
+            return json_encode($veterinario);
+        }
+
+        return response('Veterinário não encontrado', 404);
     }
 
     public function destroy($id)
     {
         $veterinario = Veterinario::find($id);
-        $veterinario->delete();
 
-        return redirect()->route('veterinario.index');
+        if(isset($veterinario)){
+            $veterinario->delete();
+            return response('OK', 200);
+        }
+
+        return response('Veterinário não encontrado', 404);
+    }
+
+    public function loadJson(){
+        $veterinario = Veterinario::all();
+        return json_encode($veterinario);
     }
 }

@@ -47,6 +47,9 @@
 <footer>
     <b>&copy;2020 - Adriele Santos de Oliveira.</b>
 </footer>
-<script scr='{{asset('js/app.js')}}' type='text/javascript'></script>
+
+<script src="{{asset('js/app.js')}}" type="text/javascript"></script>
+
+@yield('script')
 </html>
 
