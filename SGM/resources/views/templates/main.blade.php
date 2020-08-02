@@ -15,11 +15,11 @@
                 </div>
             @endif
 
-            <hi class="titulo"
+            <h1 class="titulo"
                 @if($pagina == "Default")
                     style="text-align: center"
                 @endif
-            >SGM - Sistema de Gestão de Municípios</hi>
+            >SGM - Sistema de Gestão de Municípios</h1>
         </div>
 
         @yield('conteudo')

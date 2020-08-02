@@ -67,7 +67,6 @@
                                 <div class='col-sm-12'>
                                     <label>Especialidade</label>
                                     <select class="form-control" name="especialidade_id" id="especialidades_id">
-                                        <option></option>
                                     </select>
                                 </div>
                             </div>
@@ -146,7 +145,7 @@
                     } else {
                         item = '<option value="' + data[i].id + '">' + data[i].nome + '</option>';
                     }
-                    
+
                     $('#especialidades_id').append(item);
                 }
             });
