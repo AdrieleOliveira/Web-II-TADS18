@@ -1,0 +1,123 @@
+.cabecalho{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #0D0A0B;
+    padding: 12px;
+    color: white;
+    margin-top: 20px;
+}
+
+.ca-titulo{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#logo{
+    width: 30px;
+    margin-right: 5px;
+}
+
+.ca-titulo h5{
+    font-size: 15px;
+    color: #F2EFE9;
+    margin-bottom: 0;
+    margin-left: 10px;
+}
+
+.titulo{
+    font-size: 18px;
+}
+
+.button {
+    margin-top: 30px;
+    color: white;
+}
+
+.cabecalho a{
+    color: #BFB4B0;
+    cursor: pointer;
+}
+
+#button-cadastrar{
+    background-color: #D6405E;
+}
+
+#button-confirmar{
+    background-color: #0E8A23;
+}
+
+#button-voltar{
+    background-color: #000;
+}
+
+.icon{
+    width: 25px;
+}
+
+.titulo-label{
+    font-weight: 600;
+}
+
+.button:hover{
+    color: white;
+    font-weight: 600;
+}
+
+.menu{
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.item-menu h4{
+    color: #733122;
+    text-align: center;
+}
+
+.item-menu a:hover{
+    text-decoration: none;
+}
+
+.conteudo div{
+    margin: 15px 0 0 0;
+    padding: 0 15px;
+}
+
+.botao{
+    background-color: #BF6D4E;
+    border-color: #BF6D4E;
+    color: white;
+}
+
+.botao:hover{
+    background-color: #BF8665;
+    color: white;
+}
+
+.btn-salvar{
+    background-color: #BF8665;
+    color: white;
+}
+
+.btn-salvar:hover, .btn-cancelar:hover{
+    color: white;
+    font-weight: 600;
+}
+
+.btn-cancelar{
+    background-color: #A69B97;
+    color: white;
+}
+
+.modal-body {
+    line-height: 45px
+}
+
+
+.item-menu img{
+    width: 128px;
+}
