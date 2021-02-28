@@ -18,7 +18,18 @@
 
         <h1 class="titulo">SISAR - Sistema de Avaliação Remota</h1>
 
-        <a  href="{{ route('home') }}"> <b>Home</b> </a>
+        <div>
+            <a  href="{{ route('home') }}"> <b>Home </b> </a>
+            |
+            <a href="{{ route('logout') }}"
+               onclick="event.preventDefault();
+                  document.getElementById('logout-form').submit();"> <b> Sair </b></a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+        </div>
+
     </div>
 
     @yield('conteudo')
